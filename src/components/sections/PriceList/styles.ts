@@ -27,8 +27,8 @@ export const InfoPanel = styled.div`
   background: rgb(0, 3, 72);
   background: linear-gradient(
     133deg,
-    rgba(0, 3, 72, 0.85) 0%,
-    rgba(0, 0, 0, 0.85) 100%
+    rgba(0, 3, 72, 0.7) 0%,
+    rgba(0, 0, 0, 0.7) 100%
   );
   border-radius: 9px;
 `;
