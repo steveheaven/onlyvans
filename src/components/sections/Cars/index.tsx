@@ -5,6 +5,9 @@ import { Table, Text } from "@mantine/core";
 import theme from "src/theme";
 import Image from "next/image";
 import logoBlue from "public/images/logo-blue.svg";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+
 export default function Cars() {
   const elements = [
     { brand: "VW Crafter skříňový", ac: "Ne", tote: "Ne", radio: "Ano" },
@@ -20,8 +23,24 @@ export default function Cars() {
       <td>{element.radio}</td>
     </tr>
   ));
+
+  const carsRef = useRef(null);
+  let q = gsap.utils.selector(carsRef);
+
+  useEffect(() => {
+    gsap.to(q(".card"), {
+      scrollTrigger: {
+        trigger: "#cars",
+      },
+      opacity: 1,
+      scale: 1,
+      duration: 1,
+      stagger: 0.1,
+    });
+  }, []);
+
   return (
-    <S.Wrap>
+    <S.Wrap id="cars">
       <div style={{ display: "flex" }}>
         <Text
           weight={900}
@@ -36,7 +55,7 @@ export default function Cars() {
         <Image height={100} width={100} src={logoBlue} />
       </div>
 
-      <S.CarsWrap>
+      <S.CarsWrap ref={carsRef}>
         {cars.map((car) => (
           <Car key={car.name} metadata={car} />
         ))}

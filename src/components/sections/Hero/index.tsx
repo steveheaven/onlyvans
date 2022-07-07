@@ -1,18 +1,22 @@
 import "dayjs/locale/cs";
-import { FC, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { Navbar, Button } from "@ui";
 import * as S from "./styles";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import rightArrow from "public/icons/rightArrow.svg";
 import calendar from "public/icons/calendar.svg";
-import { btnConf } from "../atoms/Button/styles";
+import { btnConf } from "../../atoms/Button/styles";
+import gsap from "gsap";
+import { MutableRefObject } from "react";
 
 type Props = {
   margin: string;
+  setModalOpened: Dispatch<SetStateAction<boolean>>;
+  logoRef: MutableRefObject<null>;
 };
 
-const Hero: FC<Props> = ({ margin }) => {
+const Hero: FC<Props> = ({ margin, setModalOpened, logoRef }) => {
   const variants = {
     visible: {
       transition: {
@@ -30,14 +34,13 @@ const Hero: FC<Props> = ({ margin }) => {
   ]);
 
   return (
-    <S.Wrap>
+    <S.Wrap id="home">
       <S.Overlay />
       <S.Content margin={margin}>
-        <Navbar />
         <motion.div variants={variants} initial="hidden" animate="visible">
-          <S.BrandName>OnlyVans</S.BrandName>
+          <S.BrandName ref={logoRef}>OnlyVans</S.BrandName>
           <S.Headline1>PŮJČOVNA DODÁVEK</S.Headline1>
-          <S.Headline2>Ústí nad Labem</S.Headline2>
+          <S.Headline2 id="navChange">Ústí nad Labem</S.Headline2>
           <S.ActionsWrap>
             <Button
               style={{
@@ -49,6 +52,12 @@ const Hero: FC<Props> = ({ margin }) => {
               color="red"
               size="xl"
               rightIcon={<Image src={rightArrow} height="15" width="15" />}
+              onClick={() =>
+                gsap.to(window, {
+                  duration: 1,
+                  scrollTo: { y: "#cars", offsetY: 80 },
+                })
+              }
             >
               VOZOVÝ PARK
             </Button>
@@ -62,7 +71,13 @@ const Hero: FC<Props> = ({ margin }) => {
                 onChange={setValue}
                 icon={<Image src={calendar} height="15" width="15" />}
               />
-              <Button radius="xl" variant="outline" color="red" size="lg">
+              <Button
+                radius="xl"
+                variant="outline"
+                color="red"
+                size="lg"
+                onClick={() => setModalOpened(true)}
+              >
                 Rezervovat
               </Button>
             </S.ReservationWrap>

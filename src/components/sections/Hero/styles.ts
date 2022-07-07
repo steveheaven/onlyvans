@@ -40,6 +40,7 @@ export const Skew = styled.div`
 export const BrandName = styled.div`
   font-family: RubikGlitch-Regular;
   font-size: 5em;
+  margin-top: 10rem;
 `;
 
 export const Headline1 = styled.div`

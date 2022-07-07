@@ -9,11 +9,11 @@ type Props = {
   margin: string;
 };
 
-const variants = {
-  hidden: { opacity: 0, x: -200, y: 0 },
-  enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: 0, y: -100 },
-};
+// const variants = {
+//   hidden: { opacity: 0, x: -200, y: 0 },
+//   enter: { opacity: 1, x: 0, y: 0 },
+//   exit: { opacity: 0, x: 0, y: -100 },
+// };
 
 const Layout: FC<Props> = ({ children, title, description, margin }) => (
   <>
@@ -26,7 +26,7 @@ const Layout: FC<Props> = ({ children, title, description, margin }) => (
       initial="hidden"
       animate="enter"
       exit="exit"
-      variants={variants}
+      // variants={variants}
       transition={{ type: "linear" }}
       margin={margin}
     >

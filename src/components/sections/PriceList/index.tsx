@@ -11,7 +11,7 @@ import Image from "next/image";
 
 export default function Pricelist() {
   return (
-    <S.Wrap>
+    <S.Wrap id="pricelist">
       <Text
         weight={900}
         style={{

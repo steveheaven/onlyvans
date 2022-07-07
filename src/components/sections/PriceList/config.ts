@@ -6,9 +6,12 @@ export enum ParamVariant {
 const getVariant = (variant: ParamVariant) => {
   // @TODO: not much evolvable here, but it's a start...redo this later
   return (aboveLimit: string | undefined, deposit: string | undefined) => {
-    if (variant === ParamVariant.AboveLimit)
-      return `Při překročení denního limitu: ${aboveLimit},-Kč/km`;
-    if (variant === ParamVariant.Deposit) return `Kauce ${deposit},- Kč.`;
+    // if (variant === ParamVariant.AboveLimit)
+    //   return `Při překročení denního limitu: ${aboveLimit},-Kč/km`;
+    // if (variant === ParamVariant.Deposit) return `Kauce ${deposit},- Kč.`;
+    return variant === ParamVariant.AboveLimit
+      ? `Při překročení denního limitu: ${aboveLimit},-Kč/km`
+      : `Kauce ${deposit},- Kč.`;
   };
 };
 

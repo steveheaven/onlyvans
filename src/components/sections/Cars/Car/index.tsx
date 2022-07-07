@@ -18,7 +18,11 @@ export const Car: FC<Props> = ({ metadata }) => {
   const theme = useMantineTheme();
 
   return (
-    <div key={name} style={{ margin: "auto" }}>
+    <div
+      key={name}
+      style={{ margin: "auto", transform: "scale(0.3)", opacity: 0 }}
+      className="card"
+    >
       <MCard shadow="sm" p="lg">
         <MCard.Section>
           <S.CarImage src={img} height={400} alt={name} style={{}} />

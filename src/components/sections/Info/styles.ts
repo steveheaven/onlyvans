@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Wrap = styled.section`
-  margin: 20vh 0;
+  margin: 10vh 0;
   display: flex;
   flex-direction: row;
 `;

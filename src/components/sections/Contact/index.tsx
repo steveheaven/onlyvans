@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { Input, Textarea } from "@mantine/core";
+import { Input, Modal, Textarea } from "@mantine/core";
 import { At, User } from "tabler-icons-react";
 import { Button } from "@ui";
 import Image from "next/image";
@@ -8,8 +8,11 @@ import phone from "public/images/phone.svg";
 import fb from "public/images/fb.svg";
 import schedule from "public/images/schedule.svg";
 import logo from "public/images/logo-white.svg";
+import { useState } from "react";
 
 export default function Contact() {
+  const [termsModalIsOpen, setTermsModalIsOpen] = useState(false);
+
   const contactInfo = {
     "jan.kapoun@dodavkyusti.cz": mail,
     "+420 721 167 442": phone,
@@ -18,7 +21,14 @@ export default function Contact() {
   };
 
   return (
-    <S.Wrap>
+    <S.Wrap id="contact">
+      <Modal
+        opened={termsModalIsOpen}
+        onClose={() => setTermsModalIsOpen(false)}
+        size="lg"
+      >
+        Smluvni podminky TBD...
+      </Modal>
       <S.Col>
         <h1>
           <strong>Kontakt</strong>
@@ -45,7 +55,15 @@ export default function Contact() {
             </div>
           ))}
         </div>
-        <u>Smluvni podminky</u>
+
+        <u
+          onClick={() => setTermsModalIsOpen(true)}
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          Smluvní podmínky
+        </u>
         <div
           style={{
             display: "flex",
@@ -90,7 +108,7 @@ export default function Contact() {
               size="lg"
               $custConf="primary"
             >
-              Rezervovat
+              Odeslat
             </Button>
           </div>
         </form>

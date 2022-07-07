@@ -1,16 +1,32 @@
 import Image from "next/image";
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
+import { MutableRefObject } from "react";
 
-export const Wrap = styled.nav`
+const mobileWrap = css`
+  justify-content: left;
+`;
+const desktopWrap = css`
+  justify-content: center;
+`;
+
+export const Wrap = styled.div<{ isMobile: boolean }>`
   margin: 0px 0 100px 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
+  ${({ isMobile }) => (isMobile ? mobileWrap : desktopWrap)};
+  position: fixed;
   top: 0;
+  color: white;
+  width: 100%;
+  height: 60px;
+  z-index: 10;
+`;
+export const NavWrap = styled.nav`
+  width: 80%;
   /* background-color: red; */
-  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const Logo = styled(Image)`
@@ -18,10 +34,11 @@ export const Logo = styled(Image)`
 `;
 
 export const Menu = styled.ul`
+  /* background-color: green; */
   display: flex;
   justify-content: space-between;
   list-style: none;
-  width: 70%;
+  width: 75%;
 `;
 
 const activeItem = css`
