@@ -21,3 +21,8 @@ export const ParamKey = styled.span`
 export const ParamValue = styled.span`
   font-weight: 300;
 `;
+
+export const ModalContenWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+`;

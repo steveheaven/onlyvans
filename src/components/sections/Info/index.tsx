@@ -5,6 +5,7 @@ import Image from "next/image";
 import circleImage from "public/images/circleImg.png";
 import { Button } from "@ui";
 import gsap, { Circ } from "gsap";
+import theme from "src/theme";
 
 type Props = {
   ref: RefObject<HTMLElement>;
@@ -25,7 +26,27 @@ const InfoSection: FC = () => {
       {
         scrollTrigger: {
           trigger: "#info",
-          scrub: true,
+          start: "top 50%",
+          onEnter: () => {
+            gsap.set(".info", {
+              color: theme.colors.primary,
+              fontWeight: "bold",
+            });
+            gsap.set(".navMenu", {
+              color: "black",
+              fontWeight: "bold",
+            });
+          },
+          onEnterBack: () => {
+            gsap.set(".navMenu", {
+              color: "black",
+              fontWeight: "bold",
+            });
+            gsap.set(".info", {
+              color: theme.colors.primary,
+              fontWeight: "bold",
+            });
+          },
         },
         x: 50,
         y: 50,
@@ -36,6 +57,16 @@ const InfoSection: FC = () => {
       }
     );
   }, []);
+
+  const services = [
+    "Půjčovna dodávek různých typů (i se skříňovou nadstavbou)",
+    "Stěhování",
+    "Vyklízení",
+    "Rozvoz",
+    "Odvoz na skládku",
+    "Dovoz zboží z obchodu",
+  ];
+
   return (
     <S.Wrap ref={infoRef} id="info">
       {/* <ScrollTrigger ref={sectionRef} id="thirdCircle"> */}
@@ -48,15 +79,18 @@ const InfoSection: FC = () => {
         <S.Address>Ústí nad Labem - adresa</S.Address>
         <S.UList>
           {/* @TODO: In case of more items, create a loop of items on both lists to keep the code DRY */}
-          <S.UItem>Půjčovna dodávek (i se skříňovou nadstavbou) </S.UItem>
-          <S.UItem>Proč spolupracovat s námi?</S.UItem>
-          <S.OList>
-            <S.OItem>Férové jednání</S.OItem>
-            <S.OItem>Okamžitá odpověď jak emailem tak telefonicky</S.OItem>
-            <S.OItem>...</S.OItem>
-          </S.OList>
+          {services.map((s) => (
+            <S.UItem>{s}</S.UItem>
+          ))}
+          {/* <S.UItem>
+            Půjčovna dodávek různých typů (i se skříňovou nadstavbou)
+          </S.UItem>
+          <S.UItem>Stěhování</S.UItem>
+          <S.UItem>Vyklízení</S.UItem>
+          <S.UItem>Rozvoz</S.UItem>
+          <S.UItem>Odvoz na skládku</S.UItem>
+          <S.UItem>Dovoz zboží z obchodu</S.UItem> */}
         </S.UList>
-        <S.UItem>Nejaky kecy</S.UItem>
         <Button
           $custConf="primary"
           size="md"

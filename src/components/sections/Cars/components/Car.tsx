@@ -6,14 +6,22 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { Button } from "@ui";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import { CarMetadata } from "src/data/cars";
 import * as S from "./styles";
 
 type Props = {
   metadata: CarMetadata;
+  setModalIsOpen: Dispatch<SetStateAction<boolean>>;
+  setSelectedCarId: Dispatch<SetStateAction<number>>;
+  id: number;
 };
-export const Car: FC<Props> = ({ metadata }) => {
+export const Car: FC<Props> = ({
+  metadata,
+  setModalIsOpen,
+  setSelectedCarId,
+  id,
+}) => {
   const { name, img, params, priceFrom } = metadata;
   const theme = useMantineTheme();
 
@@ -61,6 +69,11 @@ export const Car: FC<Props> = ({ metadata }) => {
           style={{ marginTop: 30 }}
           size="lg"
           $custConf="primary"
+          type="submit"
+          onClick={() => {
+            setSelectedCarId(id);
+            setModalIsOpen(true);
+          }}
         >
           Rezervovat
         </Button>

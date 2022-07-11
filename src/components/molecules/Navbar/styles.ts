@@ -38,11 +38,11 @@ export const Menu = styled.ul`
   display: flex;
   justify-content: space-between;
   list-style: none;
-  width: 75%;
+  width: 40%;
 `;
 
 const activeItem = css`
-  border-bottom: 3px solid white;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const Item = styled.li<{ active?: boolean }>`

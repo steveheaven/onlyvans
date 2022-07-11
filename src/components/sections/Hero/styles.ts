@@ -74,8 +74,8 @@ export const ReservationWrap = styled.div`
   border-radius: 100px;
 `;
 
-export const RangePicker = styled(DateRangePicker)`
-  width: 400px;
+export const RangePicker = styled(DateRangePicker)<{ isReservation?: boolean }>`
+  ${({ isReservation }) => (isReservation ? "" : "width: 400px;")}
   & > div > div > div > input {
     color: ${({ theme }) => theme.colors.grey80};
     border: none;

@@ -5,18 +5,27 @@ import * as S from "./styles";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import rightArrow from "public/icons/rightArrow.svg";
-import calendar from "public/icons/calendar.svg";
 import { btnConf } from "../../atoms/Button/styles";
 import gsap from "gsap";
 import { MutableRefObject } from "react";
+import { ReservationInput } from "./components/ReservationInput";
+import { ReservationDate } from "pages";
 
 type Props = {
   margin: string;
   setModalOpened: Dispatch<SetStateAction<boolean>>;
   logoRef: MutableRefObject<null>;
+  reservationDate: ReservationDate;
+  setReservationDate: Dispatch<SetStateAction<ReservationDate>>;
 };
 
-const Hero: FC<Props> = ({ margin, setModalOpened, logoRef }) => {
+const Hero: FC<Props> = ({
+  margin,
+  setModalOpened,
+  logoRef,
+  reservationDate,
+  setReservationDate,
+}) => {
   const variants = {
     visible: {
       transition: {
@@ -25,13 +34,13 @@ const Hero: FC<Props> = ({ margin, setModalOpened, logoRef }) => {
     },
   };
 
-  const today = new Date();
-  const tomorrow = new Date(new Date().setDate(today.getDate() + 1) + 1000);
+  // const today = new Date();
+  // const tomorrow = new Date(new Date().setDate(today.getDate() + 1) + 1000);
 
-  const [value, setValue] = useState<[Date | null, Date | null]>([
-    today,
-    tomorrow,
-  ]);
+  // const [value, setValue] = useState<[Date | null, Date | null]>([
+  //   today,
+  //   tomorrow,
+  // ]);
 
   return (
     <S.Wrap id="home">
@@ -61,26 +70,12 @@ const Hero: FC<Props> = ({ margin, setModalOpened, logoRef }) => {
             >
               VOZOVÝ PARK
             </Button>
-            <S.ReservationWrap>
-              <S.RangePicker
-                locale="cs"
-                radius="xl"
-                size="lg"
-                placeholder="Vyberte datum"
-                value={value}
-                onChange={setValue}
-                icon={<Image src={calendar} height="15" width="15" />}
-              />
-              <Button
-                radius="xl"
-                variant="outline"
-                color="red"
-                size="lg"
-                onClick={() => setModalOpened(true)}
-              >
-                Rezervovat
-              </Button>
-            </S.ReservationWrap>
+            <ReservationInput
+              size="lg"
+              value={reservationDate}
+              setValue={setReservationDate}
+              setModalOpened={setModalOpened}
+            />
           </S.ActionsWrap>
         </motion.div>
       </S.Content>

@@ -3,13 +3,42 @@ import * as S from "./styles";
 import { Text } from "@mantine/core";
 import theme from "src/theme";
 import Carousel from "framer-motion-carousel";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { cars } from "src/data/cars";
 import { Title } from "@mantine/core";
 import { conditions } from "./config";
 import Image from "next/image";
+import gsap from "gsap";
 
 export default function Pricelist() {
+  useEffect(() => {
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#pricelist",
+        start: "top 50%",
+        onEnter: () => {
+          gsap.set(".pricelist", {
+            color: theme.colors.primary,
+            fontWeight: "bold",
+          });
+          gsap.set(".navMenu", {
+            color: "black",
+            fontWeight: "bold",
+          });
+        },
+        onEnterBack: () => {
+          gsap.set(".navMenu", {
+            color: "black",
+            fontWeight: "bold",
+          });
+          gsap.set(".pricelist", {
+            color: theme.colors.primary,
+            fontWeight: "bold",
+          });
+        },
+      },
+    });
+  }, []);
   return (
     <S.Wrap id="pricelist">
       <Text

@@ -79,13 +79,13 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
   };
 
   const menuConfig = {
-    "Rezervace vozu": () => setModalOpened(true),
+    Služby: "info",
     "Nabídka vozidel": "cars",
     Ceník: "pricelist",
     Kontakt: "contact",
   };
 
-  const [activeItemIdx, setActiveItemIdx] = useState(0);
+  const [activeItemIdx, setActiveItemIdx] = useState<number | null>(null);
 
   const [width, setWidth] = useState(1000);
 
@@ -105,6 +105,11 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
       },
       {
         scrollTrigger: {
+          onEnterBack: () => {
+            gsap.set(".navMenu", {
+              color: "white",
+            });
+          },
           trigger: "#navChange",
           scrub: true,
           start: "bottom center",
@@ -117,8 +122,6 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
       }
     );
   }, []);
-
-  console.log(logoIsBlack);
 
   const isMobile = width < 900;
 
@@ -156,23 +159,19 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
             {Object.entries(menuConfig).map(([key, value], i) => (
               <S.Item
                 key={key}
+                // c={value}
                 active={activeItemIdx === i}
                 onClick={() => {
                   setActiveItemIdx(i);
-                  typeof value === "string"
-                    ? gsap.to(window, {
-                        duration: 1,
-                        scrollTo: { y: `#${value}`, offsetY: 80 },
-                      })
-                    : value();
+                  gsap.to(window, {
+                    duration: 1,
+                    scrollTo: { y: `#${value}`, offsetY: 80 },
+                  });
                 }}
               >
                 {key}
               </S.Item>
             ))}
-            {/* <S.Link variants={linkVariants}>home</S.Link>
-            <S.Link variants={linkVariants}>about</S.Link>
-            <S.Link variants={linkVariants}>gallery</S.Link> */}
           </S.Nav>
         </>
       ) : (
@@ -200,15 +199,14 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
             {Object.entries(menuConfig).map(([key, value], i) => (
               <S.Item
                 key={key}
+                className={`${value} navMenu`}
                 active={activeItemIdx === i}
                 onClick={() => {
                   setActiveItemIdx(i);
-                  typeof value === "string"
-                    ? gsap.to(window, {
-                        duration: 1,
-                        scrollTo: { y: `#${value}`, offsetY: 80 },
-                      })
-                    : value();
+                  gsap.to(window, {
+                    duration: 1,
+                    scrollTo: { y: `#${value}`, offsetY: 80 },
+                  });
                 }}
               >
                 {key}

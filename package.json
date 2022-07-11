@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.6.2",
     "@mantine/core": "^4.2.9",
     "@mantine/dates": "^4.2.10",
+    "@mantine/form": "^4.2.12",
     "@mantine/hooks": "^4.2.9",
+    "@mantine/notifications": "^4.2.12",
     "dayjs": "^1.11.3",
     "framer-motion": "^6.3.11",
     "framer-motion-carousel": "^2.0.1",

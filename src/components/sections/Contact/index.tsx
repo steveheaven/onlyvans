@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { Input, Modal, Textarea } from "@mantine/core";
+import { TextInput, Modal, Textarea } from "@mantine/core";
 import { At, User } from "tabler-icons-react";
 import { Button } from "@ui";
 import Image from "next/image";
@@ -8,17 +8,65 @@ import phone from "public/images/phone.svg";
 import fb from "public/images/fb.svg";
 import schedule from "public/images/schedule.svg";
 import logo from "public/images/logo-white.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { sendEmail, TemplateId, TemplateParams } from "src/utils/sendEmail";
+import { useForm } from "@mantine/form";
+import gsap from "gsap";
+import theme from "src/theme";
 
 export default function Contact() {
   const [termsModalIsOpen, setTermsModalIsOpen] = useState(false);
 
+  const form = useForm({
+    initialValues: {
+      email: "",
+      name: "",
+      message: "",
+    },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Neplatný e-mail"),
+      message: (value) => (value.length > 0 ? null : "Vyplňte zprávu"),
+      name: (value) => (value.length > 2 ? null : "Příliš krátké jméno"),
+    },
+  });
+
+  const name = form.getInputProps("name").value;
+  const fromEmail = form.getInputProps("email").value;
+  const message = form.getInputProps("message").value;
+
   const contactInfo = {
-    "jan.kapoun@dodavkyusti.cz": mail,
+    "honzakapoun@email.cz": mail,
     "+420 721 167 442": phone,
     "onlyvans-usti": fb,
     "9:00 - 18:00 PO - NE": schedule,
   };
+
+  const templateParams: TemplateParams = {
+    fromEmail,
+    name,
+    message,
+  };
+
+  useEffect(() => {
+    gsap.install({
+      scrollTrigger: {
+        trigger: "#contact",
+        start: "top 50%",
+        onEnter: () => {
+          gsap.set(".contact", {
+            color: theme.colors.primary,
+            fontWeight: "bold",
+          });
+        },
+        onEnterBack: () => {
+          gsap.set(".contact", {
+            color: theme.colors.primary,
+            fontWeight: "bold",
+          });
+        },
+      },
+    });
+  }, []);
 
   return (
     <S.Wrap id="contact">
@@ -77,7 +125,11 @@ export default function Contact() {
         </div>
       </S.Col>
       <S.Col>
-        <form onSubmit={() => console.log("Submitted!!!")}>
+        <form
+          onSubmit={form.onSubmit(() =>
+            sendEmail(templateParams, TemplateId.QUESTION)
+          )}
+        >
           <div style={{ width: "80%" }}>
             <h2 style={{ textAlign: "center" }}>
               Kontaktujte nás kdykoli budete chtít, pokusíme se odpovědět co
@@ -91,13 +143,25 @@ export default function Contact() {
                 height: "220px",
               }}
             >
-              <Input icon={<User />} placeholder="Jméno" size="lg" />
-              <Input icon={<At />} placeholder="Váš e-mail" size="lg" />
+              <TextInput
+                icon={<User />}
+                placeholder="Jméno"
+                size="lg"
+                required
+                {...form.getInputProps("name")}
+              />
+              <TextInput
+                icon={<At />}
+                placeholder="Váš e-mail"
+                size="lg"
+                {...form.getInputProps("email")}
+                required
+              />
               <Textarea
-                // icon={<List />}
                 placeholder="Váše zpráva..."
                 required
                 size="lg"
+                {...form.getInputProps("message")}
               />
             </div>
             <Button
