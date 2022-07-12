@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components";
+// import { Image } from "@mantine/core";
+import Image from "next/image";
 
 export const Wrap = styled.section`
   margin: 10vh 0;
@@ -21,7 +23,7 @@ export const BrandName = styled.span<{ outlined?: boolean }>`
 
 export const Address = styled.div`
   font-family: Rubik-Bold;
-  color: ${({ theme }) => theme.colors.grey80};
+  color: ${({ theme }) => theme.colors.grey100};
 `;
 
 export const TextWrap = styled.div`
@@ -31,6 +33,9 @@ export const TextWrap = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-left: 50px;
+  @media screen and (max-width: 600px) {
+    margin-left: 0;
+  }
 `;
 
 export const UList = styled.ul`
@@ -39,6 +44,12 @@ export const UList = styled.ul`
 
 export const UItem = styled.li`
   margin: 10px 0;
+  @media screen and (max-width: 600px) {
+    color: white;
+    font-size: 0.6em;
+    margin: 5px 0;
+    width: 60%;
+  }
 `;
 
 export const OList = styled.ol`
@@ -50,4 +61,21 @@ export const OList = styled.ol`
 export const OItem = styled.li`
   font-family: Rubik-Regular;
   margin: 10px 0;
+`;
+
+export const ImageWrap = styled.div`
+  @media screen and (max-width: 600px) {
+    position: fixed;
+    top: 30%;
+    z-index: -1;
+  }
+`;
+
+export const CircleImage = styled(Image)`
+  border-radius: 50%;
+
+  /* position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%; */
 `;

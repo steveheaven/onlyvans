@@ -4,18 +4,20 @@ import { Layout, Navbar } from "@ui";
 import { ThemeProvider } from "styled-components";
 import theme from "src/theme";
 import { Hero } from "@ui";
-import Info from "src/components/sections/Info";
-import { Cars } from "src/components/sections/Cars";
-import Pricelist from "src/components/sections/PriceList";
-import Contact from "src/components/sections/Contact";
 import gsap from "gsap";
 import { Modal } from "@mantine/core";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 const scrollTrigger = require("../node_modules/gsap/ScrollTrigger");
 const scrollToPlugin = require("../node_modules/gsap/ScrollToPlugin");
 import emailjs from "@emailjs/browser";
 import { email } from "src/config";
 import { NotificationsProvider } from "@mantine/notifications";
+import dynamic from "next/dynamic";
+
+const Pricelist = dynamic(() => import("src/components/sections/PriceList"));
+const Contact = dynamic(() => import("src/components/sections/Contact"));
+const Cars = dynamic(() => import("src/components/sections/Cars"));
+const Info = dynamic(() => import("src/components/sections/Info"));
 
 export type ReservationDate = [Date | null, Date | null];
 
@@ -34,8 +36,20 @@ const Home: NextPage = () => {
   ]);
   const [opened, setOpened] = useState(false);
 
+  // @TODO: Create some simpler config function to keep the code of gsap concise
   gsap.registerPlugin(scrollTrigger, scrollToPlugin);
   emailjs.init(email.USER_ID);
+
+  const [width, setWidth] = useState(1000);
+
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [width]);
+  const isMobile = width < 900;
 
   return (
     <>
@@ -44,8 +58,14 @@ const Home: NextPage = () => {
       </Head>
       <ThemeProvider theme={theme}>
         <NotificationsProvider>
-          <Navbar setModalOpened={setOpened} logoRef={logoRef} />
+          {/* Create a factory function for sections to keep the code DRY */}
+          <Navbar
+            setModalOpened={setOpened}
+            logoRef={logoRef}
+            isMobile={isMobile}
+          />
           <Hero
+            isMobile={isMobile}
             margin={contentMargin}
             setModalOpened={setOpened}
             logoRef={logoRef}
@@ -63,7 +83,7 @@ const Home: NextPage = () => {
               reservationDate={reservationDate}
               setReservationDate={setReservationDate}
             />
-            <Pricelist />
+            <Pricelist isMobile={isMobile} />
             <Contact />
           </Layout>
           <Modal

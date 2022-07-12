@@ -8,6 +8,12 @@ export const Wrap = styled.div`
   border-radius: 9px;
   color: white;
   padding: 50px;
+  @media screen and (max-width: 600px) {
+    margin: 10vh 0 15vh 0;
+    flex-direction: column;
+    font-size: 0.8em;
+    height: 140vh;
+  }
 `;
 
 export const Col = styled.div`
@@ -16,4 +22,15 @@ export const Col = styled.div`
   justify-content: space-between;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 600px) {
+    justify-content: space-evenly;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  @media screen and (max-width: 600px) {
+    width: 80vw;
+  }
 `;

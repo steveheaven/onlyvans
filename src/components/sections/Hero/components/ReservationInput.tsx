@@ -11,12 +11,14 @@ type Props = {
   setValue: Dispatch<SetStateAction<InputDate>>;
   setModalOpened: Dispatch<SetStateAction<boolean>>;
   size: "lg" | "md";
+  isMobile: boolean;
 };
 export const ReservationInput: FC<Props> = ({
   value,
   setValue,
   setModalOpened,
   size = "lg",
+  isMobile,
 }) => {
   return (
     <ReservationWrap>
@@ -25,8 +27,8 @@ export const ReservationInput: FC<Props> = ({
         radius="xl"
         size={size}
         variant="unstyled"
-        placeholder="Vyberte datum"
-        value={value}
+        placeholder="Datum"
+        value={!isMobile ? value : undefined}
         onChange={setValue}
         icon={<Image src={calendar} height="15" width="15" />}
       />

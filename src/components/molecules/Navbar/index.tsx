@@ -13,11 +13,12 @@ import {
 import gsap from "gsap";
 
 type Props = {
-  setModalOpened: Dispatch<SetStateAction<boolean>>;
+  setModalOpened?: Dispatch<SetStateAction<boolean>>;
   logoRef: MutableRefObject<null>;
+  isMobile: boolean;
 };
 
-const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
+const Navbar: FC<Props> = ({ logoRef, isMobile }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [logoIsBlack, setLogoIsBlack] = useState(false);
 
@@ -61,17 +62,6 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
     },
   };
 
-  const linkVariants = {
-    opened: {
-      opacity: 1,
-      y: 50,
-    },
-    closed: {
-      opacity: 0,
-      y: 0,
-    },
-  };
-
   const variants = {
     hidden: { opacity: 0, x: -200, y: 0 },
     enter: { opacity: 1, x: 0, y: 0 },
@@ -87,16 +77,6 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
 
   const [activeItemIdx, setActiveItemIdx] = useState<number | null>(null);
 
-  const [width, setWidth] = useState(1000);
-
-  useEffect(() => {
-    function handleResize() {
-      setWidth(window.innerWidth);
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [width]);
-
   useEffect(() => {
     gsap.fromTo(
       "#nav",
@@ -106,9 +86,9 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
       {
         scrollTrigger: {
           onEnterBack: () => {
-            gsap.set(".navMenu", {
-              color: "white",
-            });
+            // gsap.set(".navMenu", {
+            //   color: "white",
+            // });
           },
           trigger: "#navChange",
           scrub: true,
@@ -123,7 +103,29 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
     );
   }, []);
 
-  const isMobile = width < 900;
+  // const panels = gsap.utils.toArray(menuConfig);
+  // // @TODO - typing
+  // const navLinks = gsap.utils.toArray(".navMenu") as any;
+
+  // panels.forEach((panel, i) => {
+  //   gsap.install({
+  //     trigger: panel,
+  //     start: "top 50%",
+
+  //     onEnter: () => {
+  //       navLinks.forEach((e: any) => {
+  //         e.classList.remove("active");
+  //       });
+  //       navLinks[i].classList.add("active");
+  //     },
+  //     onEnterBack: () => {
+  //       navLinks.forEach((e: any) => {
+  //         e.classList.remove("active");
+  //       });
+  //       navLinks[i].classList.add("active");
+  //     },
+  //   });
+  // });
 
   return (
     <S.Wrap id="nav" isMobile={isMobile}>
@@ -150,7 +152,6 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
               </svg>
             </S.SvgBox>
           </S.Header>
-
           <S.Nav
             initial={false}
             variants={menuVariants}
@@ -172,6 +173,17 @@ const Navbar: FC<Props> = ({ setModalOpened, logoRef }) => {
                 {key}
               </S.Item>
             ))}
+            <S.Logo
+              src={logoWhite}
+              height="40"
+              width="40"
+              onClick={() =>
+                gsap.to(window, {
+                  duration: 1,
+                  scrollTo: { y: "#home", offsetY: 80 },
+                })
+              }
+            />
           </S.Nav>
         </>
       ) : (

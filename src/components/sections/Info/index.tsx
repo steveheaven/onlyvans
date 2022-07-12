@@ -1,11 +1,11 @@
 import "dayjs/locale/cs";
 import { FC, RefObject, useEffect, useRef } from "react";
 import * as S from "./styles";
-import Image from "next/image";
 import circleImage from "public/images/circleImg.png";
 import { Button } from "@ui";
 import gsap, { Circ } from "gsap";
 import theme from "src/theme";
+import { StaticImageData } from "next/image";
 
 type Props = {
   ref: RefObject<HTMLElement>;
@@ -19,14 +19,14 @@ const InfoSection: FC = () => {
     gsap.fromTo(
       "#info",
       {
-        opacity: 0,
-        y: -100,
-        x: -400,
+        opacity: 0.5,
+        y: -20,
+        x: -200,
       },
       {
         scrollTrigger: {
+          scrub: true,
           trigger: "#info",
-          start: "top 50%",
           onEnter: () => {
             gsap.set(".info", {
               color: theme.colors.primary,
@@ -48,11 +48,10 @@ const InfoSection: FC = () => {
             });
           },
         },
-        x: 50,
-        y: 50,
+        x: 10,
+        y: 60,
         duration: 1,
         opacity: 1,
-        delay: 2,
         ease: Circ.easeOut,
       }
     );
@@ -70,7 +69,9 @@ const InfoSection: FC = () => {
   return (
     <S.Wrap ref={infoRef} id="info">
       {/* <ScrollTrigger ref={sectionRef} id="thirdCircle"> */}
-      <Image src={circleImage} height="400" width="400" />
+      <S.ImageWrap>
+        <S.CircleImage src={circleImage} />
+      </S.ImageWrap>
       <S.TextWrap>
         <div>
           <S.BrandName>OnlyVans</S.BrandName>
@@ -78,18 +79,9 @@ const InfoSection: FC = () => {
         </div>
         <S.Address>Ústí nad Labem - adresa</S.Address>
         <S.UList>
-          {/* @TODO: In case of more items, create a loop of items on both lists to keep the code DRY */}
           {services.map((s) => (
-            <S.UItem>{s}</S.UItem>
+            <S.UItem key={s}>{s}</S.UItem>
           ))}
-          {/* <S.UItem>
-            Půjčovna dodávek různých typů (i se skříňovou nadstavbou)
-          </S.UItem>
-          <S.UItem>Stěhování</S.UItem>
-          <S.UItem>Vyklízení</S.UItem>
-          <S.UItem>Rozvoz</S.UItem>
-          <S.UItem>Odvoz na skládku</S.UItem>
-          <S.UItem>Dovoz zboží z obchodu</S.UItem> */}
         </S.UList>
         <Button
           $custConf="primary"

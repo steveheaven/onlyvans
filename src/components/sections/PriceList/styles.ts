@@ -1,5 +1,7 @@
+import { TextProps } from "@mantine/core";
 import Image from "next/image";
 import styled from "styled-components";
+import { Text as ManText } from "@mantine/core";
 
 export const Wrap = styled.section`
   margin-top: 20vh;
@@ -11,6 +13,9 @@ export const Content = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+  @media screen and (max-width: 600px) {
+    font-size: 0.5em;
+  }
 `;
 export const BgImage = styled(Image)`
   border-radius: ${({ theme }) => theme.radius.buttonRadius};
@@ -59,4 +64,18 @@ export const Item = styled.li<{ center?: boolean }>`
   width: 100%;
   justify-content: ${({ center }) => (center ? "center" : "space-between")};
   margin: 1px 0;
+`;
+
+export const Text = styled(ManText)<TextProps<any>>`
+  font-size: 4em;
+  color: ${({ theme }) => theme.colors.secondaryDark};
+  @media screen and (max-width: 600px) {
+    font-size: 1em;
+  }
+`;
+
+export const Title = styled.div`
+  @media screen and (max-width: 600px) {
+    font-size: 0.4em;
+  }
 `;

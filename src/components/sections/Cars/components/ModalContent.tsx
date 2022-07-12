@@ -20,7 +20,6 @@ type Props = {
 
 export const ModalContent: FC<Props> = ({
   carId,
-  setModalOpened,
   reservationDate,
   setReservationDate,
 }) => {
@@ -29,7 +28,6 @@ export const ModalContent: FC<Props> = ({
   const form = useForm({
     initialValues: {
       email: "",
-      phone: "",
       termsOfService: false,
     },
 
@@ -41,22 +39,10 @@ export const ModalContent: FC<Props> = ({
   return (
     <ModalContenWrap>
       <h2>Rezervace</h2>
-      <CarImage height={300} width={300} src={img} />
+      <CarImage height={300} width={300} src={img} alt="Car" />
       <h3>{name}</h3>
       <Box>
         <form onSubmit={form.onSubmit((values) => console.log(values))}>
-          <TextInput
-            required
-            icon={<Image src={phone} height="15" width="15" />}
-            label="Telefon"
-            placeholder="+420..."
-            {...form.getInputProps("phone")}
-            style={{
-              margin: "10px 0",
-              width: "60%",
-            }}
-            radius="xl"
-          />
           <TextInput
             required
             icon={<Image src={mail} height="15" width="15" />}
@@ -86,12 +72,6 @@ export const ModalContent: FC<Props> = ({
             icon={<Image src={calendar} height="15" width="15" />}
           />
 
-          <Checkbox
-            mt="md"
-            label="Souhlasím se zpracováním osobních údajů"
-            {...form.getInputProps("termsOfService", { type: "checkbox" })}
-          />
-
           <Group position="left" mt="md">
             <Button
               color="red"
@@ -105,32 +85,6 @@ export const ModalContent: FC<Props> = ({
           </Group>
         </form>
       </Box>
-      {/* <Input
-        radius="xl"
-        icon={<Image src={phone} height="15" width="15" />}
-        placeholder="Telefon"
-        style={{
-          margin: "10px 0 0 0",
-          width: "50%",
-        }}
-      />
-      <Input
-        radius="xl"
-        icon={<Image src={mail} height="15" width="15" />}
-        placeholder="E-mail"
-        style={{
-          margin: "10px 0",
-          width: "50%",
-        }}
-      />
-      <ReservationInput
-        // @ts-ignore @TODO - typing
-        value={value}
-        // @ts-ignore
-        setValue={setValue}
-        setModalOpened={setModalOpened}
-        size="md"
-      /> */}
     </ModalContenWrap>
   );
 };

@@ -16,14 +16,13 @@ type Props = {
   setReservationDate: Dispatch<SetStateAction<ReservationDate>>;
 };
 
-export const Cars: FC<Props> = ({ reservationDate, setReservationDate }) => {
+const Cars: FC<Props> = ({ reservationDate, setReservationDate }) => {
   const [modalIsOpened, setModalIsOpened] = useState(false);
   const [selectedCarId, setSelectedCarId] = useState(0);
 
   const elements = [
     { brand: "VW Crafter skříňový", ac: "Ne", tote: "Ne", radio: "Ano" },
     { brand: "Renaul Master skříňový", ac: "Ne", tote: "Ne", radio: "Ano" },
-    // { brand: "VW Crafter L4H2", ac: "Ne", tote: "Ano", radio: "Ne" },
     { brand: "Ford Transit", ac: "Ano", tote: "Ne", radio: "Ano" },
   ];
   const rows = elements.map((element) => (
@@ -75,28 +74,15 @@ export const Cars: FC<Props> = ({ reservationDate, setReservationDate }) => {
         scrub: true,
       },
     });
-  }, []);
-
-  // useEffect(() => {
-
-  // }, []);
+  }, [q]);
 
   const manTheme = useMantineTheme();
 
   return (
     <S.Wrap id="cars">
       <div style={{ display: "flex" }}>
-        <Text
-          weight={900}
-          style={{
-            fontSize: "4em",
-            color: theme.colors.secondaryDark,
-            marginRight: "40px",
-          }}
-        >
-          Vozový park
-        </Text>{" "}
-        <Image height={100} width={100} src={logoBlue} />
+        <S.Text weight={900}>Vozový park</S.Text>{" "}
+        <Image height={50} width={50} src={logoBlue} />
       </div>
       <Modal
         opened={modalIsOpened}
@@ -143,3 +129,4 @@ export const Cars: FC<Props> = ({ reservationDate, setReservationDate }) => {
     </S.Wrap>
   );
 };
+export default Cars;

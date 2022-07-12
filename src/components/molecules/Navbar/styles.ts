@@ -62,7 +62,7 @@ export const Header = styled.header`
 
 export const Nav = styled(motion.nav)`
   background-color: ${({ theme }) => theme.colors.secondaryDark};
-  height: 90vh;
+  height: 50vh;
   width: 100vw;
   position: fixed;
   top: 0;
@@ -70,6 +70,8 @@ export const Nav = styled(motion.nav)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  list-style: none;
+  color: white;
 `;
 
 export const Link = styled(motion.li)`

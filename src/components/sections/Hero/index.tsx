@@ -1,6 +1,6 @@
 import "dayjs/locale/cs";
 import { Dispatch, FC, SetStateAction, useState } from "react";
-import { Navbar, Button } from "@ui";
+// import { Navbar } from "@ui";
 import * as S from "./styles";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -17,6 +17,7 @@ type Props = {
   logoRef: MutableRefObject<null>;
   reservationDate: ReservationDate;
   setReservationDate: Dispatch<SetStateAction<ReservationDate>>;
+  isMobile: boolean;
 };
 
 const Hero: FC<Props> = ({
@@ -25,6 +26,7 @@ const Hero: FC<Props> = ({
   logoRef,
   reservationDate,
   setReservationDate,
+  isMobile,
 }) => {
   const variants = {
     visible: {
@@ -51,15 +53,12 @@ const Hero: FC<Props> = ({
           <S.Headline1>PŮJČOVNA DODÁVEK</S.Headline1>
           <S.Headline2 id="navChange">Ústí nad Labem</S.Headline2>
           <S.ActionsWrap>
-            <Button
-              style={{
-                width: "300px",
-              }}
+            <S.Button
               $custConf={Object.keys(btnConf)[0] as keyof typeof btnConf}
               radius="xl"
               variant="outline"
               color="red"
-              size="xl"
+              size="lg"
               rightIcon={<Image src={rightArrow} height="15" width="15" />}
               onClick={() =>
                 gsap.to(window, {
@@ -69,12 +68,13 @@ const Hero: FC<Props> = ({
               }
             >
               VOZOVÝ PARK
-            </Button>
+            </S.Button>
             <ReservationInput
-              size="lg"
+              size="md"
               value={reservationDate}
               setValue={setReservationDate}
               setModalOpened={setModalOpened}
+              isMobile={isMobile}
             />
           </S.ActionsWrap>
         </motion.div>

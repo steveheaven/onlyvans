@@ -1,5 +1,5 @@
 import * as S from "./styles";
-import { TextInput, Modal, Textarea } from "@mantine/core";
+import { Modal, Textarea, TextInput } from "@mantine/core";
 import { At, User } from "tabler-icons-react";
 import { Button } from "@ui";
 import Image from "next/image";
@@ -78,54 +78,8 @@ export default function Contact() {
         Smluvni podminky TBD...
       </Modal>
       <S.Col>
-        <h1>
-          <strong>Kontakt</strong>
-        </h1>
-        <div>
-          {Object.entries(contactInfo).map(([key, img]) => (
-            <div
-              key={key}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                margin: "10px 0",
-                width: "100%",
-              }}
-            >
-              <Image src={img} height="20" width="20" />
-              <div
-                style={{
-                  marginLeft: "10px",
-                }}
-              >
-                {key}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <u
-          onClick={() => setTermsModalIsOpen(true)}
-          style={{
-            cursor: "pointer",
-          }}
-        >
-          Smluvní podmínky
-        </u>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            height: "13%",
-          }}
-        >
-          <div>© {new Date().getFullYear()} Onlyvans s.r.o.</div>
-          <Image src={logo} height="20" width="20" />
-        </div>
-      </S.Col>
-      <S.Col>
-        <form
+        <S.Form
+          style={{}}
           onSubmit={form.onSubmit(() =>
             sendEmail(templateParams, TemplateId.QUESTION)
           )}
@@ -175,7 +129,54 @@ export default function Contact() {
               Odeslat
             </Button>
           </div>
-        </form>
+        </S.Form>
+      </S.Col>
+      <S.Col>
+        <h1>
+          <strong>Kontakt</strong>
+        </h1>
+        <div>
+          {Object.entries(contactInfo).map(([key, img]) => (
+            <div
+              key={key}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                margin: "10px 0",
+                width: "100%",
+              }}
+            >
+              <Image src={img} height="20" width="20" alt="icon" />
+              <div
+                style={{
+                  marginLeft: "10px",
+                }}
+              >
+                {key}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <u
+          onClick={() => setTermsModalIsOpen(true)}
+          style={{
+            cursor: "pointer",
+          }}
+        >
+          Smluvní podmínky
+        </u>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            height: "13%",
+          }}
+        >
+          <div>© {new Date().getFullYear()} Onlyvans s.r.o.</div>
+          <Image src={logo} height="20" width="20" />
+        </div>
       </S.Col>
     </S.Wrap>
   );

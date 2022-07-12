@@ -3,14 +3,19 @@ import * as S from "./styles";
 import { Text } from "@mantine/core";
 import theme from "src/theme";
 import Carousel from "framer-motion-carousel";
-import { Fragment, useEffect } from "react";
+import { FC, Fragment, useEffect } from "react";
 import { cars } from "src/data/cars";
 import { Title } from "@mantine/core";
 import { conditions } from "./config";
 import Image from "next/image";
 import gsap from "gsap";
 
-export default function Pricelist() {
+type Props = {
+  isMobile: boolean;
+};
+
+export const Pricelist: FC<Props> = ({ isMobile }) => {
+  const imageSize = isMobile ? 20 : 50;
   useEffect(() => {
     gsap.timeline({
       scrollTrigger: {
@@ -41,15 +46,7 @@ export default function Pricelist() {
   }, []);
   return (
     <S.Wrap id="pricelist">
-      <Text
-        weight={900}
-        style={{
-          fontSize: "4em",
-          color: theme.colors.secondaryDark,
-        }}
-      >
-        Ceník
-      </Text>
+      <S.Text weight={900}>Ceník</S.Text>
       <Carousel interval={500} autoPlay={false} loop>
         {cars.map(({ img, name, logo, priceList, deposit, aboveLimit }, i) => (
           <Fragment key={i}>
@@ -65,16 +62,16 @@ export default function Pricelist() {
                     >
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <Image
-                          height={50}
-                          width={50}
+                          height={imageSize}
+                          width={imageSize}
                           src={logo}
                           alt={name}
                           style={{ objectFit: "cover" }}
                         />
-                        <div style={{ marginLeft: "30px" }}>{name}</div>
+                        <S.Title style={{ marginLeft: "30px" }}>{name}</S.Title>
                       </div>
                     </Title>
-                    <S.List width="60%">
+                    <S.List width={isMobile ? "auto" : "60%"}>
                       {Object.entries(priceList || {}).map(([key, value]) => (
                         <S.Item key={key}>
                           <div
@@ -90,7 +87,7 @@ export default function Pricelist() {
                     </S.List>
                   </S.Col>
                   <S.Col>
-                    <Title>Podmínky zapůjčení</Title>
+                    <S.Title>Podmínky zapůjčení</S.Title>
                     <S.List width="100%">
                       {conditions.map((condition, i) => (
                         <S.Item center key={i}>
@@ -109,4 +106,6 @@ export default function Pricelist() {
       </Carousel>
     </S.Wrap>
   );
-}
+};
+
+export default Pricelist;

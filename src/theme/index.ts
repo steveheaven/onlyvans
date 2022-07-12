@@ -3,6 +3,7 @@ export const colors = {
   primaryDark: "#BD0909",
   secondaryDark: "#000462",
   grey80: "#8F8F8F",
+  grey100: "#5B5B5B",
 };
 
 export const radius = {
