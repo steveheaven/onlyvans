@@ -23,7 +23,7 @@ export const Col = styled.div`
   display: flex;
   align-items: center;
   @media screen and (max-width: 600px) {
-    justify-content: space-evenly;
+    justify-content: center;
   }
 `;
 

@@ -19,7 +19,7 @@ export const Wrap = styled.div<{ isMobile: boolean }>`
   color: white;
   width: 100%;
   height: 60px;
-  z-index: 10;
+  z-index: 11;
 `;
 export const NavWrap = styled.nav`
   width: 80%;

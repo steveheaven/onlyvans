@@ -14,10 +14,10 @@ import { email } from "src/config";
 import { NotificationsProvider } from "@mantine/notifications";
 import dynamic from "next/dynamic";
 
-const Pricelist = dynamic(() => import("src/components/sections/PriceList"));
-const Contact = dynamic(() => import("src/components/sections/Contact"));
-const Cars = dynamic(() => import("src/components/sections/Cars"));
-const Info = dynamic(() => import("src/components/sections/Info"));
+const Pricelist = dynamic(() => import("src/sections/PriceList"));
+const Contact = dynamic(() => import("src/sections/Contact"));
+const Cars = dynamic(() => import("src/sections/Cars"));
+const Info = dynamic(() => import("src/sections/Info"));
 
 export type ReservationDate = [Date | null, Date | null];
 

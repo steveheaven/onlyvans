@@ -103,32 +103,9 @@ const Navbar: FC<Props> = ({ logoRef, isMobile }) => {
     );
   }, []);
 
-  // const panels = gsap.utils.toArray(menuConfig);
-  // // @TODO - typing
-  // const navLinks = gsap.utils.toArray(".navMenu") as any;
-
-  // panels.forEach((panel, i) => {
-  //   gsap.install({
-  //     trigger: panel,
-  //     start: "top 50%",
-
-  //     onEnter: () => {
-  //       navLinks.forEach((e: any) => {
-  //         e.classList.remove("active");
-  //       });
-  //       navLinks[i].classList.add("active");
-  //     },
-  //     onEnterBack: () => {
-  //       navLinks.forEach((e: any) => {
-  //         e.classList.remove("active");
-  //       });
-  //       navLinks[i].classList.add("active");
-  //     },
-  //   });
-  // });
-
   return (
     <S.Wrap id="nav" isMobile={isMobile}>
+      {/* @TODO - isMobile should be passed through props as into one component */}
       {isMobile ? (
         <>
           <S.Header>

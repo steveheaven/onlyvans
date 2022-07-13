@@ -60,7 +60,7 @@ export const ModalContent: FC<Props> = ({
               margin: "10px 0",
               width: "60%",
             }}
-            isReservation
+            $isReservation
             locale="cs"
             radius="xl"
             // size={size}

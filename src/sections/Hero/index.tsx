@@ -1,11 +1,11 @@
 import "dayjs/locale/cs";
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 // import { Navbar } from "@ui";
 import * as S from "./styles";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import rightArrow from "public/icons/rightArrow.svg";
-import { btnConf } from "../../atoms/Button/styles";
+import { btnConf } from "../../components/atoms/Button/styles";
 import gsap from "gsap";
 import { MutableRefObject } from "react";
 import { ReservationInput } from "./components/ReservationInput";
@@ -35,14 +35,6 @@ const Hero: FC<Props> = ({
       },
     },
   };
-
-  // const today = new Date();
-  // const tomorrow = new Date(new Date().setDate(today.getDate() + 1) + 1000);
-
-  // const [value, setValue] = useState<[Date | null, Date | null]>([
-  //   today,
-  //   tomorrow,
-  // ]);
 
   return (
     <S.Wrap id="home">

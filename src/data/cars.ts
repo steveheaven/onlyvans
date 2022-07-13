@@ -28,7 +28,7 @@ interface StaticRequire {
 declare type StaticImport = StaticRequire | StaticImageData;
 
 export type CarMetadata = {
-  img: StaticImageData;
+  img: StaticImageData | string;
   logo: string | StaticImport;
   name: string;
   params: CarParams;
