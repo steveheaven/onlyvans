@@ -3,6 +3,7 @@ import { ReservationWrap, RangePicker } from "../styles";
 import Image from "next/image";
 import calendar from "public/icons/calendar.svg";
 import { Button } from "@ui";
+import gsap from "gsap";
 
 export type InputDate = [Date | null, Date | null];
 
@@ -37,7 +38,13 @@ export const ReservationInput: FC<Props> = ({
         variant="outline"
         color="red"
         size="lg"
-        onClick={() => setModalOpened(true)}
+        onClick={() => {
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: { y: "#cars", offsetY: 80 },
+          });
+          // setModalOpened(true)
+        }}
       >
         Rezervovat
       </Button>

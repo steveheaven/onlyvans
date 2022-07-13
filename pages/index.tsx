@@ -86,7 +86,7 @@ const Home: NextPage = () => {
             <Pricelist isMobile={isMobile} />
             <Contact />
           </Layout>
-          <Modal
+          {/* <Modal
             transition="fade"
             transitionDuration={600}
             transitionTimingFunction="ease"
@@ -95,7 +95,7 @@ const Home: NextPage = () => {
             onClose={() => setOpened(false)}
           >
             Content
-          </Modal>
+          </Modal> */}
         </NotificationsProvider>
       </ThemeProvider>
     </>
