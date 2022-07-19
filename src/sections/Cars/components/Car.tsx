@@ -6,6 +6,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { Button } from "@ui";
+import Link from "next/link";
 import { Dispatch, FC, SetStateAction } from "react";
 import { CarMetadata } from "src/data/cars";
 import * as S from "./styles";
@@ -33,7 +34,13 @@ export const Car: FC<Props> = ({
     >
       <MCard shadow="sm" p="lg">
         <MCard.Section>
-          <S.CarImage src={img} height={400} alt={name} style={{}} />
+          <S.CarImage
+            src={img}
+            height={400}
+            width="500"
+            alt={name}
+            style={{}}
+          />
         </MCard.Section>
 
         <Group
@@ -50,7 +57,7 @@ export const Car: FC<Props> = ({
           </Badge>
         </Group>
 
-        <S.Params>
+        {/* <S.Params>
           {Object.entries(params).map(([key, value]) => (
             <S.ParamItem key={key}>
               <Text weight={600} style={{ textAlign: "left" }}>
@@ -61,7 +68,9 @@ export const Car: FC<Props> = ({
               </Text>
             </S.ParamItem>
           ))}
-        </S.Params>
+        </S.Params> */}
+
+        <Link href="/detail">Detail vozu</Link>
 
         <Button
           color="red"

@@ -57,13 +57,13 @@ const Cars: FC<Props> = ({ reservationDate, setReservationDate }) => {
             fontWeight: "bold",
           });
           gsap.set(".navMenu", {
-            color: "black",
+            color: "grey",
             fontWeight: "bold",
           });
         },
         onEnterBack: () => {
           gsap.set(".navMenu", {
-            color: "black",
+            color: "grey",
             fontWeight: "bold",
           });
           gsap.set(".cars", {
@@ -115,7 +115,7 @@ const Cars: FC<Props> = ({ reservationDate, setReservationDate }) => {
         ))}
       </S.CarsWrap>
 
-      <Table striped highlightOnHover>
+      {/* <Table striped highlightOnHover>
         <thead>
           <tr>
             <th>Značka</th>
@@ -125,7 +125,7 @@ const Cars: FC<Props> = ({ reservationDate, setReservationDate }) => {
           </tr>
         </thead>
         <tbody>{rows}</tbody>
-      </Table>
+      </Table> */}
     </S.Wrap>
   );
 };

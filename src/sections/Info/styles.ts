@@ -45,7 +45,7 @@ export const UList = styled.ul`
 export const UItem = styled.li`
   margin: 10px 0;
   @media screen and (max-width: 600px) {
-    color: white;
+    /* color: white; */
     font-size: 0.6em;
     margin: 5px 0;
     width: 60%;
@@ -64,18 +64,19 @@ export const OItem = styled.li`
 `;
 
 export const ImageWrap = styled.div`
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 1000px) {
     position: fixed;
-    top: 30%;
+    top: 60%;
+    left: 40%;
     z-index: -1;
   }
 `;
 
 export const CircleImage = styled(Image)`
-  border-radius: 50%;
+  /* border-radius: 50%; */
 
-  /* position: absolute;
-  object-fit: cover;
-  width: 100%;
-  height: 100%; */
+  /* position: absolute; */
+  /* object-fit: cover; */
+  /* width: 100%; */
+  /* height: 600px; */
 `;

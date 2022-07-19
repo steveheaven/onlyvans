@@ -6,6 +6,7 @@ import Image from "next/image";
 import mail from "public/images/mail.svg";
 import phone from "public/images/phone.svg";
 import fb from "public/images/fb.svg";
+import ig from "public/images/ig.svg";
 import schedule from "public/images/schedule.svg";
 import logo from "public/images/logo-white.svg";
 import { useEffect, useState } from "react";
@@ -35,9 +36,10 @@ export default function Contact() {
   const message = form.getInputProps("message").value;
 
   const contactInfo = {
-    "honzakapoun@email.cz": mail,
-    "+420 721 167 442": phone,
-    "onlyvans-usti": fb,
+    "onlyvansusti@gmail.com": mail,
+    "+420 604 283 132": phone,
+    "OnlyVans Půjčovna dodávek Ústí nad Labem": fb,
+    "OnlyVans Ústí nad Labem": ig,
     "9:00 - 18:00 PO - NE": schedule,
   };
 
@@ -75,7 +77,44 @@ export default function Contact() {
         onClose={() => setTermsModalIsOpen(false)}
         size="lg"
       >
-        Smluvni podminky TBD...
+        <h2>Smluvní podmínky</h2>{" "}
+        <h3>Požadované doklady pro pronájem vozidla:</h3>
+        <h4>Fyzická osoba:</h4>{" "}
+        <ul>
+          <li>Doklad totožnosti – občanský průkaz nebo pas </li>
+          <li>Řidičský průkaz</li>
+        </ul>
+        <h4>Fyzická osoba podnikající nebo právnická osoba:</h4>
+        <ul>
+          <li>Živnostenský list</li>
+          <li>Výpis z obchodního rejstříku</li>
+          <li>
+            Doklad totožnosti – občanský průkaz a řidičský průkaz statutárního
+            zástupce společnosti
+          </li>
+          <li>
+            Plná moc podepsaná statutárním zástupcem společnosti v případě, kdy
+            vozidlo vyzvedává jiná osoba
+          </li>
+          <li>
+            Doklad totožnosti – občanský průkaz a řidičský průkaz této osoby
+          </li>
+        </ul>{" "}
+        <h4>Způsoby platby: </h4>
+        <ul>
+          <li>platby pouze v hotovosti včetně vratné kauce</li>
+        </ul>
+        <h4>Pravidla pronájmu dodávky u OnlyVans:</h4> Po dobu trvání pronájmu
+        dodávky nájemce za vozidlo ručí jako by bylo jeho vlastní. Nájemce
+        přebírá zodpovědnost za veškeré škody vzniklé během doby trvání pronájmu
+        vozidla. Platby pouze předem v hotovosti, a to včetně vratné kauce,
+        která bude nájemci vrácena při vrácení vozidla ve stavu, v jakém jej
+        nájemce od pronajímatele přebíral, včetně veškerého vybavení. Dodávky
+        jsou zapůjčeny s plnou nádrží. Nájemce je povinen vrátit dodávku taktéž
+        s plnou nádrží. Nájemce není oprávněn vozidlo pronajímat třetí osobě.
+        Taktéž není povoleno předat k užívání vozidlo dalším osobám, pokud
+        nebyly zmíněny ve smlouvě. Další osoba oprávněna řídit dodávku musí při
+        podpisu smlouvy předložit občanský a řidičský průkaz.
       </Modal>
       <S.Col>
         <S.Form

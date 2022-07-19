@@ -15,9 +15,10 @@ export const Wrap = styled.section`
 
 export const Overlay = styled.div`
   background-image: linear-gradient(rgb(0, 0, 0), rgb(32, 45, 160));
-  mix-blend-mode: soft-light;
+  mix-blend-mode: darken;
   height: 100%;
   width: 100%;
+  opacity: 0.8;
 `;
 
 export const Content = styled.div<{ margin: string }>`

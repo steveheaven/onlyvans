@@ -1,7 +1,7 @@
 import "dayjs/locale/cs";
 import { FC, RefObject, useEffect, useRef } from "react";
 import * as S from "./styles";
-import circleImage from "public/images/circleImg.png";
+import speedVan from "public/images/speedVan.jpg";
 import { Button } from "@ui";
 import gsap, { Circ } from "gsap";
 import theme from "src/theme";
@@ -33,13 +33,13 @@ const InfoSection: FC = () => {
               fontWeight: "bold",
             });
             gsap.set(".navMenu", {
-              color: "black",
+              color: "grey",
               fontWeight: "bold",
             });
           },
           onEnterBack: () => {
             gsap.set(".navMenu", {
-              color: "black",
+              color: "grey",
               fontWeight: "bold",
             });
             gsap.set(".info", {
@@ -58,11 +58,12 @@ const InfoSection: FC = () => {
   }, []);
 
   const services = [
-    "Půjčovna dodávek různých typů (i se skříňovou nadstavbou)",
-    "Stěhování",
-    "Vyklízení",
-    "Rozvoz",
-    "Odvoz na skládku",
+    "Jediná půjčovna skříňových dodávek v Ústí nad Labem.",
+    "Půjčujeme i klasické dodávky.",
+    "Naši dodávku si můžete zapůjčit i s řidičem",
+    "Vyklízení nemovitostí",
+    "Rozvoz zboží",
+    "Odvoz věcí na skládku",
     "Dovoz zboží z obchodu",
   ];
 
@@ -70,7 +71,7 @@ const InfoSection: FC = () => {
     <S.Wrap ref={infoRef} id="info">
       {/* <ScrollTrigger ref={sectionRef} id="thirdCircle"> */}
       <S.ImageWrap>
-        <S.CircleImage src={circleImage} />
+        <S.CircleImage src={speedVan} height="400" width="500" />
       </S.ImageWrap>
       <S.TextWrap>
         <div>

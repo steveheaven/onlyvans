@@ -96,7 +96,7 @@ const Navbar: FC<Props> = ({ logoRef, isMobile }) => {
         },
         duration: 0.5,
         backgroundColor: "white",
-        color: "black",
+        color: "white",
         boxShadow: "5px 6px 14px -8px rgba(0, 0, 0, 0.42)",
         webkitBoxShadow: "5px 6px 14px -8px rgba(0, 0, 0, 0.42)",
       }
